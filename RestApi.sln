@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApi", "RestApi\RestApi.csproj", "{255634D1-B2E9-41ED-9CB6-0EC97E1D7408}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{400E2CBB-142A-40C6-B312-D0FDA85C5E34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApi.UnitTests", "RestApi.UnitTests\RestApi.UnitTests.csproj", "{62344B76-E8C0-4FC4-8654-9E8695C8115F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,12 @@ Global
 		{255634D1-B2E9-41ED-9CB6-0EC97E1D7408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{255634D1-B2E9-41ED-9CB6-0EC97E1D7408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{255634D1-B2E9-41ED-9CB6-0EC97E1D7408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62344B76-E8C0-4FC4-8654-9E8695C8115F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62344B76-E8C0-4FC4-8654-9E8695C8115F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62344B76-E8C0-4FC4-8654-9E8695C8115F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62344B76-E8C0-4FC4-8654-9E8695C8115F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{62344B76-E8C0-4FC4-8654-9E8695C8115F} = {400E2CBB-142A-40C6-B312-D0FDA85C5E34}
 	EndGlobalSection
 EndGlobal
