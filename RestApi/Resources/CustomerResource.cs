@@ -2,14 +2,15 @@
 
 namespace RestApi.Resources;
 
-public record CustomerResource(
+public class CustomerResource
+{
     [MinLength(2)]
     [StringLength(200)]
-    string FirstName,
+    public string FirstName { get; set; }
     
     [MinLength(2)]
     [StringLength(200)]
-    string LastName,
+    public string LastName { get; set; }
     
-    bool IsDeleted
-);
+    public bool IsDeleted { get; set; }
+}
