@@ -312,6 +312,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Visual Studio
+.vs/
+
 # JetBrains Rider
 .idea/
 *.sln.iml
