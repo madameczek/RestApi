@@ -37,6 +37,7 @@ public class CustomersControllerTests
 
         var actionResult = await controller.Create(new CustomerResource()) as BadRequestObjectResult;
 
+        actionResult.Should().NotBeNull();
         actionResult!.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
     }
     
@@ -51,6 +52,7 @@ public class CustomersControllerTests
 
         var actionResult = await controller.Create(new CustomerResource()) as ObjectResult;
 
+        actionResult.Should().NotBeNull();
         actionResult!.StatusCode.Should().Be(StatusCodes.Status503ServiceUnavailable);
     }
 }
