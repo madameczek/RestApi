@@ -14,7 +14,7 @@ public class CustomerService : ICustomerService
     {
         if (id % 2 == 0)
             return Task.FromResult(
-                new CustomerResource("Jan", "Wąski", false));
+                new CustomerResource { FirstName = "Jan", LastName = "Wąski", IsDeleted = false });
         
         throw new RowNotInTableException();
     }
