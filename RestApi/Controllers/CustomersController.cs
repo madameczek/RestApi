@@ -41,7 +41,7 @@ public class CustomersController : Controller
         }
     }
     
-    [HttpGet("{id}:int")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> Get(int id, CancellationToken ct = default)
     {
         try
@@ -61,7 +61,7 @@ public class CustomersController : Controller
         }
     }
     
-     [HttpPut("{id}:int")]
+     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(string id, CustomerResource customerResource, CancellationToken ct = default)
     {
         try
@@ -90,7 +90,7 @@ public class CustomersController : Controller
         }
     }
     
-    [HttpDelete("{id}:int")]
+    [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(string id, CancellationToken ct = default)
     {
         try
