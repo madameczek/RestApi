@@ -14,12 +14,13 @@ public class CustomersControllerTests
     [Fact]
     public async Task Test_Create_StatusCode200()
     {
-        var mockRepository = new Mock<ICustomerService>();
-        mockRepository.Setup(x => x.Create(new CustomerResource(), CancellationToken.None))
+        var mockedRepository = new Mock<ICustomerService>(MockBehavior.Strict);
+        mockedRepository.Setup(x => 
+                x.Create(It.IsAny<CustomerResource>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(1);
-        var controller = new CustomersController(new Mock<ILogger<CustomersController>>().Object, mockRepository.Object);
+        var controller = new CustomersController(Mock.Of<ILogger<CustomersController>>(), mockedRepository.Object);
 
-        var actionResult = await controller.Create(new Mock<CustomerResource>().Object) as CreatedResult;
+        var actionResult = await controller.Create(new CustomerResource()) as CreatedResult;
 
         actionResult!.Location.Should().Contain("customers/1");
         actionResult.StatusCode.Should().Be(StatusCodes.Status201Created);
@@ -28,13 +29,15 @@ public class CustomersControllerTests
     [Fact]
     public async Task Test_Create_StatusCode404()
     {
-        var mockRepository = new Mock<ICustomerService>();
-        mockRepository.Setup(x => x.Create(new Mock<CustomerResource>().Object, CancellationToken.None))
-            .Throws(new ArgumentException());
-        var controller = new CustomersController(new Mock<ILogger<CustomersController>>().Object, mockRepository.Object);
+        var mockRepository = new Mock<ICustomerService>(MockBehavior.Strict);
+        mockRepository.Setup(x => 
+                x.Create(It.IsAny<CustomerResource>(), It.IsAny<CancellationToken>()))
+            .ThrowsAsync(new ArgumentException());
+        var controller = new CustomersController(Mock.Of<ILogger<CustomersController>>(), mockRepository.Object);
 
-        var actionResult = await controller.Create(new Mock<CustomerResource>().Object) as BadRequestResult;
+        var actionResult = await controller.Create(new CustomerResource()) as BadRequestObjectResult;
 
+        actionResult.Should().NotBeNull();
         actionResult!.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
     }
     
@@ -42,12 +45,14 @@ public class CustomersControllerTests
     public async Task Test_Create_StatusCode503()
     {
         var mockRepository = new Mock<ICustomerService>();
-        mockRepository.Setup(x => x.Create(new Mock<CustomerResource>().Object, CancellationToken.None))
+        mockRepository.Setup(x => 
+            x.Create(It.IsAny<CustomerResource>(), It.IsAny<CancellationToken>()))
             .Throws(new Exception());
-        var controller = new CustomersController(new Mock<ILogger<CustomersController>>().Object, mockRepository.Object);
+        var controller = new CustomersController(Mock.Of<ILogger<CustomersController>>(), mockRepository.Object);
 
-        var actionResult = await controller.Create(new Mock<CustomerResource>().Object) as StatusCodeResult;
+        var actionResult = await controller.Create(new CustomerResource()) as ObjectResult;
 
+        actionResult.Should().NotBeNull();
         actionResult!.StatusCode.Should().Be(StatusCodes.Status503ServiceUnavailable);
     }
 }
